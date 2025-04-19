@@ -4,11 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useAnimation } from 'framer-motion';
-import { FiDownload, FiSmartphone, FiMessageSquare, FiCheckCircle, FiUsers, FiBarChart2, FiGlobe } from 'react-icons/fi';
-import FakeNews from '@/components/FakeNews';
-import FakeGlobe from '@/components/FakeGlobe';
-import AIParticles from '@/components/AIParticles';
+import {  FiMessageSquare, FiCheckCircle, FiUsers } from 'react-icons/fi';
+
 import Link from 'next/link';
+
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
