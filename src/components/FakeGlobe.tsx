@@ -12,8 +12,8 @@ interface EarthProps {
   showControls?: boolean;
 }
 
-function Earth({ autoRotate = true, rotationSpeed = 0.5 }: Pick<EarthProps, 'autoRotate' | 'rotationSpeed'>) {
-  const earthRef = useRef<THREE.Mesh>(null);
+// function Earth({ autoRotate = true, rotationSpeed = 0.5 }: Pick<EarthProps, 'autoRotate' | 'rotationSpeed'>) {
+//   const earthRef = useRef<THREE.Mesh>(null);
   const cloudsRef = useRef<THREE.Mesh>(null);
   
   // Load all textures in parallel
