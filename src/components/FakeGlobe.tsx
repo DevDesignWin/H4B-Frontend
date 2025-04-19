@@ -25,14 +25,14 @@ function Earth({ autoRotate = true, rotationSpeed = 0.5 }: Pick<EarthProps, 'aut
   ]);
 
   // Animation loop
-  useFrame(({ clock }) => {
-    if (earthRef.current) {
-      earthRef.current.rotation.y += autoRotate ? 0.001 * rotationSpeed : 0;
-    }
-    if (cloudsRef.current) {
-      cloudsRef.current.rotation.y += autoRotate ? 0.0011 * rotationSpeed : 0; // Slightly faster than earth
-    }
-  });
+  // useFrame(({ clock }) => {
+  //   if (earthRef.current) {
+  //     earthRef.current.rotation.y += autoRotate ? 0.001 * rotationSpeed : 0;
+  //   }
+  //   if (cloudsRef.current) {
+  //     cloudsRef.current.rotation.y += autoRotate ? 0.0011 * rotationSpeed : 0; // Slightly faster than earth
+  //   }
+  // });
 
   return (
     <group>
