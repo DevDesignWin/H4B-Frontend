@@ -66,10 +66,10 @@ export default function Home() {
   }, [controls, isInView, teamMembers.length]);
 
 
-  type SectionRefs = {
-    id: string;
-    ref: React.RefObject<HTMLDivElement>;
-  };
+  // type SectionRefs = {
+  //   id: string;
+  //   ref: React.RefObject<HTMLDivElement>;
+  // };
 
 
   // Scroll animations
