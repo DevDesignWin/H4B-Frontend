@@ -8,7 +8,6 @@ import {  FiMessageSquare, FiCheckCircle, FiUsers } from 'react-icons/fi';
 
 import Link from 'next/link';
 
-
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,10 +65,10 @@ export default function Home() {
   }, [controls, isInView, teamMembers.length]);
 
 
-  // type SectionRefs = {
-  //   id: string;
-  //   ref: React.RefObject<HTMLDivElement>;
-  // };
+  type SectionRefs = {
+    id: string;
+    ref: React.RefObject<HTMLDivElement>;
+  };
 
 
   // Scroll animations
@@ -301,8 +300,8 @@ export default function Home() {
                         <div className="flex items-start mb-2">
                           <FiCheckCircle className="text-green-500 mt-1 mr-2 flex-shrink-0" />
                           <div>
-                            <p className="font-medium text-gray-800">🔍Fact-Check Result: "Earth is flat."</p>
-                            <p className="text-sm text-gray-600">The statement "earth is flat" is inaccurate. There is overwhelming scientific evidence, including satellite imagery, observations of ships disappearing hull first over the horizon, and circumnavigation, that demonstrates the Earth is a sphere (more accurately, an oblate spheroid).</p>
+                            <p className="font-medium text-gray-800">🔍Fact-Check Result: &quot;Earth is flat.&quot;</p>
+                            <p className="text-sm text-gray-600">The statement &quot;earth is flat&quot; is inaccurate. There is overwhelming scientific evidence, including satellite imagery, observations of ships disappearing hull first over the horizon, and circumnavigation, that demonstrates the Earth is a sphere (more accurately, an oblate spheroid).</p>
                           </div>
                         </div>
                        
@@ -431,7 +430,7 @@ export default function Home() {
                       </h4>
                       <ul className="text-gray-600 space-y-2 pl-5">
                         <li className="relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-gray-400 pl-4">
-                          "Pope endorses Trump" fake story shared 1M times in 2016 election
+                        &quot;Pope endorses Trump&quot; fake story shared 1M times in 2016 election
                         </li>
                         <li className="relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-gray-400 pl-4">
                           In some states, more fake news shared than real news (Oxford study)
@@ -507,7 +506,7 @@ export default function Home() {
                       </h4>
                       <ul className="text-gray-600 space-y-2 pl-5">
                         <li className="relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-gray-400 pl-4">
-                          82% of middle schoolers can't distinguish ads from news (Stanford)
+                          82% of middle schoolers can&apos;t distinguish ads from news (Stanford)
                         </li>
                         <li className="relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-gray-400 pl-4">
                           Only 25% of high school students check sources of photos
@@ -531,7 +530,7 @@ export default function Home() {
                     </div>
 
                     <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-xl border border-purple-100">
-                      <h4 className="text-lg font-semibold text-gray-800 mb-3">Our Solution's Impact</h4>
+                      <h4 className="text-lg font-semibold text-gray-800 mb-3">Our Solution&apos;s Impact</h4>
                       <div className="flex items-center space-x-4">
                         <div className="text-3xl font-bold text-purple-600">92%</div>
                         <div className="text-gray-600">
@@ -690,8 +689,4 @@ export default function Home() {
 
     </>
   );
-}
-
-function setCurrentTeamIndex(arg0: (prev: any) => number) {
-  throw new Error('Function not implemented.');
 }
