@@ -5,6 +5,10 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useAnimation } from 'framer-motion';
 import { FiDownload, FiSmartphone, FiMessageSquare, FiCheckCircle, FiUsers, FiBarChart2, FiGlobe } from 'react-icons/fi';
+import FakeNews from '@/components/FakeNews';
+import FakeGlobe from '@/components/FakeGlobe';
+import AIParticles from '@/components/AIParticles';
+import Link from 'next/link';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
@@ -12,68 +16,68 @@ export default function Home() {
   const controls = useAnimation();
   const ref = useRef(null);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
-  
-// Refs for each section
-const homeRef = useRef<HTMLDivElement>(null);
-const featuresRef = useRef<HTMLDivElement>(null);
-const statsRef = useRef<HTMLDivElement>(null);
-const downloadRef = useRef<HTMLDivElement>(null);
-const teamRef = useRef<HTMLDivElement>(null);
 
-const teamMembers = [
-  {
-    name: "Debjeet Singha",
-    role: "AI Lead",
-    image: "/images/debjeet.jpg",
-   
-  },
-  {
-    name: "Shaurya Pandit",
-    role: "AI Lead",
-    image: "/images/shaurya.jpg",
-   
-  },
-  {
-    name: "Debojit Roy",
-    role: "Full-Stack Developer",
-    image: "/images/debojit.png",
-   
-  },
-  {
-    name: "Anurag Jyoti",
-    role: "Full-Stack Developer",
-    image: "/images/anurag.jpg",
-   
-  }
-];
+  // Refs for each section
+  const homeRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const downloadRef = useRef<HTMLDivElement>(null);
+  const teamRef = useRef<HTMLDivElement>(null);
 
-const isInView = useInView(ref, { once: true });
+  const teamMembers = [
+    {
+      name: "Debjeet Singha",
+      role: "AI Lead",
+      image: "/images/debjeet.jpg",
 
-useEffect(() => {
-  if (isInView) {
-    controls.start("visible");
-  }
+    },
+    {
+      name: "Shaurya Pandit",
+      role: "AI Lead",
+      image: "/images/shaurya.jpg",
 
-  // Auto-rotate team members
-  const interval = setInterval(() => {
-    setCurrentTeamIndex((prev) => (prev + 1) % teamMembers.length);
-  }, 5000);
+    },
+    {
+      name: "Debojit Roy",
+      role: "Full-Stack Developer",
+      image: "/images/debojit.png",
 
-  return () => clearInterval(interval);
-}, [controls, isInView, teamMembers.length]);
+    },
+    {
+      name: "Anurag Jyoti",
+      role: "Full-Stack Developer",
+      image: "/images/anurag.jpg",
+
+    }
+  ];
+
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+
+    // Auto-rotate team members
+    const interval = setInterval(() => {
+      setCurrentTeamIndex((prev) => (prev + 1) % teamMembers.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [controls, isInView, teamMembers.length]);
 
 
-type SectionRefs = {
-  id: string;
-  ref: React.RefObject<HTMLDivElement>;
-};
+  type SectionRefs = {
+    id: string;
+    ref: React.RefObject<HTMLDivElement>;
+  };
 
 
   // Scroll animations
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0.8]);
   const scale = useTransform(scrollYProgress, [0, 0.1], [1, 0.95]);
-  
+
   // Handle scroll to update active section
   useEffect(() => {
     const handleScroll = () => {
@@ -84,7 +88,7 @@ type SectionRefs = {
         { id: 'download', ref: downloadRef },
         { id: 'team', ref: teamRef },
       ];
-      
+
       for (const section of sections) {
         const element = section.ref.current;
         if (element) {
@@ -96,11 +100,11 @@ type SectionRefs = {
         }
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   // Scroll to section
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current) {
@@ -114,14 +118,14 @@ type SectionRefs = {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       {/* Floating Navbar */}
-      <motion.nav 
+      <motion.nav
         className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-6"
         style={{ opacity, scale }}
       >
         <div className="bg-white/80 backdrop-blur-md rounded-full shadow-lg p-2 flex justify-between items-center">
-          <motion.div 
+          <motion.div
             className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -129,26 +133,25 @@ type SectionRefs = {
           >
             FakeNewsDetector
           </motion.div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-1">
             {['home', 'features', 'stats', 'download', 'team'].map((item) => (
               <button
                 key={item}
                 onClick={() => scrollToSection(eval(`${item}Ref`))}
-                className={`px-4 py-2 rounded-full text-sm font-medium capitalize transition-all duration-300 ${
-                  activeSection === item
+                className={`px-4 py-2 rounded-full text-sm font-medium capitalize transition-all duration-300 ${activeSection === item
                     ? 'bg-yellow-400 text-white shadow-md'
                     : 'text-gray-600 hover:bg-gray-100'
-                }`}
+                  }`}
               >
                 {item}
               </button>
             ))}
           </div>
-          
+
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden p-2 rounded-full text-gray-600"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -158,11 +161,11 @@ type SectionRefs = {
           </button>
         </div>
       </motion.nav>
-      
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div 
+          <motion.div
             className="fixed inset-0 z-40 pt-20 bg-white/90 backdrop-blur-md md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -173,11 +176,10 @@ type SectionRefs = {
                 <motion.button
                   key={item}
                   onClick={() => scrollToSection(eval(`${item}Ref`))}
-                  className={`px-6 py-3 rounded-xl text-lg font-medium capitalize transition-all duration-300 ${
-                    activeSection === item
+                  className={`px-6 py-3 rounded-xl text-lg font-medium capitalize transition-all duration-300 ${activeSection === item
                       ? 'bg-yellow-400 text-white shadow-md'
                       : 'text-gray-600 hover:bg-gray-100'
-                  }`}
+                    }`}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.1 * ['home', 'features', 'stats', 'download', 'team'].indexOf(item) }}
@@ -189,17 +191,20 @@ type SectionRefs = {
           </motion.div>
         )}
       </AnimatePresence>
-      
+
       {/* Main Content */}
       <main className="pt-0.1">
         {/* Hero Section */}
-        <section 
+        <section
           ref={homeRef}
           className="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden"
         >
+
+
           <div className="absolute inset-0 overflow-hidden">
+
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-100 to-blue-100"></div>
-            <motion.div 
+            <motion.div
               className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-purple-300 blur-3xl"
               animate={{
                 scale: [1, 1.2, 1],
@@ -212,7 +217,7 @@ type SectionRefs = {
                 repeatType: 'reverse',
               }}
             />
-            <motion.div 
+            <motion.div
               className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-blue-300/30 blur-3xl"
               animate={{
                 scale: [1, 1.3, 1],
@@ -226,7 +231,7 @@ type SectionRefs = {
               }}
             />
           </div>
-          
+
           <div className="relative z-10 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -237,7 +242,7 @@ type SectionRefs = {
                 Fight <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Fake News</span> with AI
               </h1>
               <p className="text-lg md:text-xl text-gray-600 mb-8">
-                Our AI-powered chatbot detects fake news in real-time on WhatsApp and Discord, helping you stay informed with accurate information.
+                Our AI-powered chatbot detects fake news in real-time on Discord, helping you stay informed with accurate information.
               </p>
               <div className="flex flex-wrap gap-4">
                 <motion.button
@@ -258,7 +263,7 @@ type SectionRefs = {
                 </motion.button>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -274,12 +279,12 @@ type SectionRefs = {
                       <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                       <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
-                    <div className="mx-auto text-sm font-medium text-gray-600">WhatsApp Chat</div>
+                    <div className="mx-auto text-sm font-medium text-gray-600">Discord Chat</div>
                   </div>
                   <div className="p-6 space-y-4">
                     <div className="flex justify-end">
                       <div className="bg-blue-100 rounded-lg p-3 max-w-xs">
-                        <p className="text-gray-800">Is this news about the election true?</p>
+                        <p className="text-gray-800">!check Earth is flat.</p>
                       </div>
                     </div>
                     <div className="flex justify-start">
@@ -288,7 +293,7 @@ type SectionRefs = {
                       </div>
                     </div>
                     <div className="flex justify-start">
-                      <motion.div 
+                      <motion.div
                         className="bg-green-50 border border-green-200 rounded-lg p-3 max-w-xs"
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -297,13 +302,11 @@ type SectionRefs = {
                         <div className="flex items-start mb-2">
                           <FiCheckCircle className="text-green-500 mt-1 mr-2 flex-shrink-0" />
                           <div>
-                            <p className="font-medium text-gray-800">Analysis Complete</p>
-                            <p className="text-sm text-gray-600">This news has an 87% probability of being fake according to multiple fact-checking sources.</p>
+                            <p className="font-medium text-gray-800">🔍Fact-Check Result: "Earth is flat."</p>
+                            <p className="text-sm text-gray-600">The statement "earth is flat" is inaccurate. There is overwhelming scientific evidence, including satellite imagery, observations of ships disappearing hull first over the horizon, and circumnavigation, that demonstrates the Earth is a sphere (more accurately, an oblate spheroid).</p>
                           </div>
                         </div>
-                        <div className="text-xs text-gray-500 mt-2">
-                          <p>Sources: FactCheck.org, Snopes, Reuters</p>
-                        </div>
+                       
                       </motion.div>
                     </div>
                   </div>
@@ -312,13 +315,17 @@ type SectionRefs = {
             </motion.div>
           </div>
         </section>
-        
+
         {/* Features Section */}
-        <section 
+        <section
           ref={featuresRef}
           className="py-20 px-6 bg-gradient-to-b from-white to-blue-50"
         >
+
           <div className="max-w-6xl mx-auto">
+
+
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -331,14 +338,10 @@ type SectionRefs = {
                 Our AI chatbot comes packed with features to help you combat misinformation
               </p>
             </motion.div>
-            
+
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                {
-                  icon: <FiSmartphone className="w-8 h-8 text-purple-600" />,
-                  title: "Multi-Platform",
-                  description: "Available on WhatsApp and Discord, where most fake news spreads",
-                },
+                
                 {
                   icon: <FiMessageSquare className="w-8 h-8 text-blue-600" />,
                   title: "Real-Time Analysis",
@@ -354,16 +357,7 @@ type SectionRefs = {
                   title: "Community Reports",
                   description: "Aggregates user reports to improve detection accuracy",
                 },
-                {
-                  icon: <FiBarChart2 className="w-8 h-8 text-orange-600" />,
-                  title: "Detailed Analysis",
-                  description: "Provides probability scores and evidence for claims",
-                },
-                {
-                  icon: <FiGlobe className="w-8 h-8 text-teal-600" />,
-                  title: "Multi-Language",
-                  description: "Supports multiple languages to combat global misinformation",
-                },
+                
               ].map((feature, index) => (
                 <motion.div
                   key={index}
@@ -383,12 +377,14 @@ type SectionRefs = {
             </div>
           </div>
         </section>
-        
+
+
         {/* Statistics Section */}
-        <section 
+        <section
           ref={statsRef}
           className="py-20 px-6 bg-gradient-to-b from-blue-50 to-indigo-50"
         >
+
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -402,7 +398,7 @@ type SectionRefs = {
                 Misinformation is causing real harm across multiple sectors of society
               </p>
             </motion.div>
-            
+
             <div className="grid md:grid-cols-2 gap-12">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -412,7 +408,7 @@ type SectionRefs = {
               >
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 h-full">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Fake News Statistics</h3>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
@@ -428,7 +424,7 @@ type SectionRefs = {
                         </li>
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
                         <span className="w-3 h-3 rounded-full bg-blue-500 mr-2"></span>
@@ -443,7 +439,7 @@ type SectionRefs = {
                         </li>
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
                         <span className="w-3 h-3 rounded-full bg-green-500 mr-2"></span>
@@ -458,7 +454,7 @@ type SectionRefs = {
                         </li>
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
                         <span className="w-3 h-3 rounded-full bg-orange-500 mr-2"></span>
@@ -476,7 +472,7 @@ type SectionRefs = {
                   </div>
                 </div>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -485,7 +481,7 @@ type SectionRefs = {
               >
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 h-full">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">More Concerning Data</h3>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
@@ -504,7 +500,7 @@ type SectionRefs = {
                         </li>
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
                         <span className="w-3 h-3 rounded-full bg-indigo-500 mr-2"></span>
@@ -519,7 +515,7 @@ type SectionRefs = {
                         </li>
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-800 mb-2 flex items-center">
                         <span className="w-3 h-3 rounded-full bg-teal-500 mr-2"></span>
@@ -527,14 +523,14 @@ type SectionRefs = {
                       </h4>
                       <ul className="text-gray-600 space-y-2 pl-5">
                         <li className="relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-gray-400 pl-4">
-                          WhatsApp limited forwarding after India lynchings
+                          Discord limited forwarding after India lynchings
                         </li>
                         <li className="relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-gray-400 pl-4">
                           50% of US adults see fake news as bigger problem than terrorism
                         </li>
                       </ul>
                     </div>
-                    
+
                     <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-xl border border-purple-100">
                       <h4 className="text-lg font-semibold text-gray-800 mb-3">Our Solution's Impact</h4>
                       <div className="flex items-center space-x-4">
@@ -550,9 +546,9 @@ type SectionRefs = {
             </div>
           </div>
         </section>
-        
+
         {/* Download Section */}
-        <section 
+        <section
           ref={downloadRef}
           className="py-20 px-6 bg-gradient-to-b from-indigo-50 to-purple-50"
         >
@@ -566,34 +562,19 @@ type SectionRefs = {
             >
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get FakeNewsDetector Today</h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Available on your favorite platforms to help you combat misinformation
+                Available on your favorite platform to help you combat misinformation
               </p>
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="grid md:grid-cols-2 gap-8 mb-16"
+              className="grid  gap-8 mb-16"
             >
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="p-8">
-                  <div className="w-20 h-20 rounded-xl bg-blue-50 flex items-center justify-center mx-auto mb-6">
-                    <FiSmartphone className="w-10 h-10 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">WhatsApp</h3>
-                  <p className="text-gray-600 mb-6">Get instant fake news detection in your favorite messaging app</p>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-blue-600 text-white rounded-full font-medium shadow-md hover:shadow-lg transition-all w-full max-w-xs"
-                  >
-                    Add to WhatsApp
-                  </motion.button>
-                </div>
-              </div>
               
+
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div className="p-8">
                   <div className="w-20 h-20 rounded-xl bg-indigo-50 flex items-center justify-center mx-auto mb-6">
@@ -606,18 +587,25 @@ type SectionRefs = {
                     whileTap={{ scale: 0.95 }}
                     className="px-6 py-3 bg-indigo-600 text-white rounded-full font-medium shadow-md hover:shadow-lg transition-all w-full max-w-xs"
                   >
-                    Add to Discord
+                    <Link
+                      href="https://discord.com/oauth2/authorize?client_id=1362787732442579004&permissions=1689934340025408&integration_type=0&scope=bot"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full h-full"
+                    >
+                      Add to Discord
+                    </Link>
                   </motion.button>
                 </div>
               </div>
             </motion.div>
-            
-            
+
+
           </div>
         </section>
-        
+
         {/* Team Section */}
-        <section 
+        <section
           ref={teamRef}
           className="py-20 px-6 bg-gradient-to-b from-purple-50 to-white"
         >
@@ -631,21 +619,20 @@ type SectionRefs = {
             <h2 className="text-3xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
               Meet Our Team
             </h2>
-            
+
             <div className="relative h-96">
               {teamMembers.map((member, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ 
+                  animate={{
                     opacity: index === currentTeamIndex ? 1 : 0,
                     scale: index === currentTeamIndex ? 1 : 0.8,
                     zIndex: index === currentTeamIndex ? 1 : 0
                   }}
                   transition={{ duration: 0.6 }}
-                  className={`absolute inset-0 flex flex-col items-center justify-center ${
-                    index === currentTeamIndex ? 'pointer-events-auto' : 'pointer-events-none'
-                  }`}
+                  className={`absolute inset-0 flex flex-col items-center justify-center ${index === currentTeamIndex ? 'pointer-events-auto' : 'pointer-events-none'
+                    }`}
                 >
                   <div className="relative w-64 h-64 mb-6">
                     <motion.div
@@ -660,14 +647,14 @@ type SectionRefs = {
                       />
                     </motion.div>
                     <motion.div
-                      animate={{ 
+                      animate={{
                         rotate: 360,
                         transition: { duration: 20, repeat: Infinity, ease: "linear" }
                       }}
                       className="absolute inset-0 rounded-full border-2 border-dashed border-purple-500/20"
                     />
                   </div>
-                  
+
                   <motion.div
                     initial={{ y: 20 }}
                     animate={{ y: 0 }}
@@ -678,21 +665,20 @@ type SectionRefs = {
                     <p className="text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 font-medium mb-2">
                       {member.role}
                     </p>
-                 
+
                   </motion.div>
                 </motion.div>
               ))}
-              
+
               <div className="flex justify-center mt-8 space-x-2">
                 {teamMembers.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentTeamIndex(index)}
-                    className={`w-3 h-3 rounded-full transition ${
-                      index === currentTeamIndex 
-                        ? 'bg-purple-600 w-6' 
+                    className={`w-3 h-3 rounded-full transition ${index === currentTeamIndex
+                        ? 'bg-purple-600 w-6'
                         : 'bg-gray-600 hover:bg-gray-500'
-                    }`}
+                      }`}
                     aria-label={`View team member ${index + 1}`}
                   />
                 ))}
@@ -701,8 +687,8 @@ type SectionRefs = {
           </motion.div>
         </section>
       </main>
-      
-    
+
+
     </>
   );
 }
