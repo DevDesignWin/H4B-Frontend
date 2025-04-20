@@ -242,24 +242,7 @@ export default function Home() {
               <p className="text-lg md:text-xl text-gray-600 mb-8">
                 Our AI-powered chatbot detects fake news in real-time on Discord, helping you stay informed with accurate information.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all"
-                  onClick={() => scrollToSection(downloadRef)}
-                >
-                  Get Started
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-3 bg-white text-gray-800 rounded-full font-medium shadow-lg hover:shadow-xl transition-all"
-                  onClick={() => scrollToSection(featuresRef)}
-                >
-                  Learn More
-                </motion.button>
-              </div>
+              
             </motion.div>
 
             <motion.div
