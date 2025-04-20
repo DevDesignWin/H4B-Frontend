@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 TruthSync – Real-Time Fact Checking Bot for Discord
 
-## Getting Started
+**TruthSync** is a 24/7 intelligent Discord bot designed to combat misinformation in real-time. It leverages the power of Google's **Gemini Grounded Search Tool** to analyze and verify the authenticity of any news or statement, directly from your Discord server.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- ✅ **24/7 Availability** – Always online and ready to verify!
+- 🔍 **AI-Powered Fact Checking** – Backed by **Gemini Grounded Search** for accurate news validation.
+- 💬 **Simple Usage** – Just use `!check <message>` to validate a claim.
+- 🌐 **Cross-Platform Ready** – Works seamlessly on any Discord server.
+- 📡 **Real-Time Results** – Instant feedback on whether the news is true, false, or misleading.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+TruthSync will analyze the message using Gemini's verification system and return a response indicating whether the claim is accurate or false, along with supporting evidence or clarification.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Component       | Technology Used                 |
+|----------------|----------------------------------|
+| Frontend       | [Next.js](https://nextjs.org/)   |
+| Backend        | Python + Gemini API              |
+| Development    | Firebase Studio                  |
+| Deployment     | Vercel (Frontend), AWS EC2 (Backend) |
+| Fact Check Engine | Gemini Grounded Search Tool    |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 💡 How It Works
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. User sends a message with `!check <message>`.
+2. The backend processes the message and sends it to **Gemini's Grounded Search Tool**.
+3. Gemini evaluates the authenticity of the claim by referencing credible sources.
+4. TruthSync returns a detailed response to the Discord server, clarifying whether the news is **true**, **false**, or **needs more context**.
+
+---
+
+
+## 🧪 Roadmap / Upcoming Features
+
+- 🔗 Source Linking – View original fact-checking sources for transparency.
+- 🌐 Multilingual Support – Verify news in multiple languages.
+- 📈 Fact-Check Analytics Dashboard – Track what’s being verified most frequently.
+- 🛡️ Misinformation Alert System – Real-time alerts for trending fake news.
+- 🤖 Cross-Platform Support – Integration with **WhatsApp** and **Slack** coming soon.
+- 📰 Knowledge Base Integration – In the future, TruthSync will include a constantly updated **news knowledge base** to cross-reference messages with real-time events for enhanced accuracy.
+
+
+---
+
+## 🤝 Contributing
+
+Want to improve TruthSync or add new features? Feel free to fork the repo and create a pull request. Contributions are welcome!
+
+---
+
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+> Built with ❤️ by developers who care about the **truth**.
+
