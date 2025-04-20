@@ -7,7 +7,7 @@
 ## 🚀 Features
 
 - ✅ **24/7 Availability** – Always online and ready to verify!
-- 🔍 **AI-Powered Fact Checking** – Backed by **Gemini Grounded Search** for accurate news validation.
+- 🔍 **AI-Powered Fact Checking** – Backed by **Gemini and Grounded Search** for accurate news validation.
 - 💬 **Simple Usage** – Just use `!check <message>` to validate a claim.
 - 🌐 **Cross-Platform Ready** – Works seamlessly on any Discord server.
 - 📡 **Real-Time Results** – Instant feedback on whether the news is true, false, or misleading.
@@ -20,17 +20,17 @@
 | Component       | Technology Used                 |
 |----------------|----------------------------------|
 | Frontend       | [Next.js](https://nextjs.org/)   |
-| Backend        | Python + Gemini API              |
+| Backend        | Python + Gemini                  |
 | Development    | Firebase Studio                  |
 | Deployment     | Vercel (Frontend), AWS EC2 (Backend) |
-| Fact Check Engine | Gemini Grounded Search Tool    |
+| Fact Check Engine | Gemini and Grounded Search     |
 
 ---
 
 ## 💡 How It Works
 
 1. User sends a message with `!check <message>`.
-2. The backend processes the message and sends it to **Gemini Grounded Search Tool**.
+2. The backend processes the message and sends it to **Gemini and Grounded Search**.
 3. Gemini evaluates the authenticity of the claim by referencing credible sources.
 4. TruthSync returns a detailed response to the Discord server, clarifying whether the news is **true**, **false**, or **needs more context**.
 
