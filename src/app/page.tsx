@@ -5,7 +5,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence, useInView, useAnimation } from 'framer-motion';
 import {  FiMessageSquare, FiCheckCircle, FiUsers } from 'react-icons/fi';
-
 import Link from 'next/link';
 
 export default function Home() {
@@ -15,7 +14,7 @@ export default function Home() {
   const ref = useRef(null);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
 
-  // Refs for each section
+  // Refs for each  section
   const homeRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
