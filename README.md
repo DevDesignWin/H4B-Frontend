@@ -30,7 +30,7 @@
 ## 💡 How It Works
 
 1. User sends a message with `!check <message>`.
-2. The backend processes the message and sends it to **Gemini's Grounded Search Tool**.
+2. The backend processes the message and sends it to **Gemini Grounded Search Tool**.
 3. Gemini evaluates the authenticity of the claim by referencing credible sources.
 4. TruthSync returns a detailed response to the Discord server, clarifying whether the news is **true**, **false**, or **needs more context**.
 
