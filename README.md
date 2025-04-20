@@ -15,10 +15,6 @@
 ---
 
 
-TruthSync will analyze the message using Gemini's verification system and return a response indicating whether the claim is accurate or false, along with supporting evidence or clarification.
-
----
-
 ## 🛠️ Tech Stack
 
 | Component       | Technology Used                 |
