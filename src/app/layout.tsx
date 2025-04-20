@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'FakeNewsDetector AI | Detect Fake News in WhatsApp & Discord',
+  title: 'FakeNewsDetector AI | Detect Fake News in Discord',
   description: 'AI-powered chatbot that detects fake news using Gemini API. Available on WhatsApp and Discord.',
   keywords: 'fake news detector, AI chatbot, WhatsApp bot, Discord bot, misinformation detection',
 }
