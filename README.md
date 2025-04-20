@@ -53,12 +53,6 @@
 
 Want to improve TruthSync or add new features? Feel free to fork the repo and create a pull request. Contributions are welcome!
 
----
-
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ---
 
