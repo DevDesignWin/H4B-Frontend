@@ -49,12 +49,6 @@
 
 ---
 
-## 🤝 Contributing
-
-Want to improve TruthSync or add new features? Feel free to fork the repo and create a pull request. Contributions are welcome!
-
-
----
 
 > Built with ❤️ by developers who care about the **truth**.
 
