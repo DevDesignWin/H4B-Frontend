@@ -25,13 +25,13 @@ export default function Home() {
   const teamMembers = [
     {
       name: "Debjeet Singha",
-      role: "AI Lead",
+      role: "Backend Developer",
       image: "/images/debjeet.jpg",
 
     },
     {
       name: "Shaurya Pandit",
-      role: "AI Lead",
+      role: "Backend Developer",
       image: "/images/shaurya.jpg",
 
     },
